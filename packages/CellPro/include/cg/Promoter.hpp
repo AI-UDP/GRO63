@@ -5,7 +5,7 @@
 #include <random>
 #include <iostream>
 #include <limits>
-#include "./../uint256_t-master/uint256_t.h"
+#include "uint256_t.h"
 
 namespace cg
 {
