@@ -51,14 +51,11 @@ int main(int argc, char *argv[])
 #include <iostream>
 #include "Micro.h"
 #include "Programs.h"
-#include "CellBody.h"
 
 int main (int argc, char *argv[])
 {
-
     /*cpInitChipmunk();
     cp_collision_slop = 0.2f;*/
-    CellBody::setWidth(WIDTH);
 
     World * world;
     MicroProgram * current_program;

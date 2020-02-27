@@ -29,7 +29,7 @@
 using namespace std;
 
 #ifdef NOGUI
-World::World ( void ) {
+World::World ( void ) : plasmidCloud(std::random_device()()) {
 #else
 World::World ( GroThread *ct ) : calling_thread ( ct ) , plasmidCloud(std::random_device()()) {
 #endif

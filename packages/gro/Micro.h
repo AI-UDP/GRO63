@@ -42,8 +42,7 @@
 
 #include <stdint.h>
 
-//#include "ccl.h"
-#include "../ccl-master/ccl.h"
+#include "ccl.h"
 
 #include "Cell.h"
 #include "Defines.h"
@@ -145,7 +144,7 @@ class MicroProgram {
   virtual void world_update ( World * ) {}
   virtual void destroy ( World * ) {}
   virtual std::string name ( void ) const { return "Untitled Program"; }
-  
+
  private:
 
 };
@@ -205,7 +204,7 @@ typedef struct
     promoter_data promoter;
 } operon_data;
 
-class World { 
+class World {
 
  public:
 
