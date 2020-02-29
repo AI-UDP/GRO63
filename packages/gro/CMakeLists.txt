@@ -9,9 +9,10 @@ project(gro
     LANGUAGES CXX
     )
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+# Specific qt definitions
+set(CMAKE_AUTOMOC ON) #Enable qt preprocessor
+set(CMAKE_AUTORCC ON) #Enable qt code generator from qt resources files (.qrc)
+set(CMAKE_AUTOUIC ON) #Enable qt code generator from qt gui files (.ui)
 
 set(SRC
     Cell.cpp
@@ -70,3 +71,12 @@ target_compile_definitions(${PROJECT_NAME}
         $<$<NOT:$<BOOL:${GRO_GUI}>>:NOGUI>
     )
 
+configure_file(
+    ${PROJECT_SOURCE_DIR}/packages/gro/include/gro.gro
+    ${PROJECT_BINARY_DIR}/include/gro.gro
+    COPYONLY)
+
+configure_file(
+    ${PROJECT_SOURCE_DIR}/packages/gro/include/standard.gro
+    ${PROJECT_BINARY_DIR}/include/standard.gro
+    COPYONLY)

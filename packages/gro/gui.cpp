@@ -81,13 +81,12 @@ void Gui::about ( void ) {
 
     // set directory for C++ functions like fopen
     // NOTE: Here is probably the wrong place for this code.
-    chdir("../../..");
+    // chdir("../../.."); //FIXIT(Luis): A relative path should not be used. Using a environment variable instead.
     GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
     cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
     char buf[1000];
     sprintf (buf,"Working directory: %s", cCurrentPath);
     console.insertHtml(buf);
-
 }
 
 void Gui::open ( void ) {
