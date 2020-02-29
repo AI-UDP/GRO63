@@ -71,12 +71,30 @@ target_compile_definitions(${PROJECT_NAME}
         $<$<NOT:$<BOOL:${GRO_GUI}>>:NOGUI>
     )
 
+# Copy gro included files to build directory
 configure_file(
-    ${PROJECT_SOURCE_DIR}/packages/gro/include/gro.gro
+    ${PROJECT_SOURCE_DIR}/include/gro.gro
     ${PROJECT_BINARY_DIR}/include/gro.gro
     COPYONLY)
 
 configure_file(
-    ${PROJECT_SOURCE_DIR}/packages/gro/include/standard.gro
+    ${PROJECT_SOURCE_DIR}/include/standard.gro
     ${PROJECT_BINARY_DIR}/include/standard.gro
     COPYONLY)
+
+# Install files
+install(
+    DIRECTORY
+        ${PROJECT_BINARY_DIR}/include
+    DESTINATION
+        bin/include
+    FILES_MATCHING
+        PATTERN "*.gro"
+    )
+
+install(
+    TARGETS
+        gro
+    DESTINATION
+        bin
+    )
