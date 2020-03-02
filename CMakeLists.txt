@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
+# Modify this value each new version
+project(gro63 VERSION "1.1")
+
 # List of packet to compile
 add_subdirectory(packages/uint256_t)
 add_subdirectory(packages/CellEngine)

@@ -85,7 +85,7 @@ configure_file(
 # Install files
 install(
     DIRECTORY
-        ${PROJECT_BINARY_DIR}/include
+        ${PROJECT_BINARY_DIR}/include/
     DESTINATION
         bin/include
     FILES_MATCHING
