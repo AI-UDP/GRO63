@@ -196,6 +196,7 @@ void World::init () {
 
     if ( !program_initialized ) {
 
+        std::setlocale(LC_NUMERIC, "en_US.UTF-8");
         prog->init(this); // if this throws an exception
         // the program will not be initialized
         // in the next line
