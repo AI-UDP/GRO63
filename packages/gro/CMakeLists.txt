@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.8.0 FATAL_ERROR)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
@@ -71,7 +71,7 @@ target_compile_definitions(${PROJECT_NAME}
         $<$<NOT:$<BOOL:${GRO_GUI}>>:NOGUI>
     )
 
-# Copy gro included files to build directory
+# Copy files to build directory
 configure_file(
     ${PROJECT_SOURCE_DIR}/include/gro.gro
     ${PROJECT_BINARY_DIR}/include/gro.gro
@@ -82,6 +82,15 @@ configure_file(
     ${PROJECT_BINARY_DIR}/include/standard.gro
     COPYONLY)
 
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:Qt5::Core>
+        $<TARGET_FILE:Qt5::Gui>
+        $<TARGET_FILE:Qt5::Widgets>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
 # Install files
 install(
     DIRECTORY
@@ -90,6 +99,22 @@ install(
         bin/include
     FILES_MATCHING
         PATTERN "*.gro"
+    )
+
+install(
+    FILES 
+        $<TARGET_FILE:Qt5::Core>
+        $<TARGET_FILE:Qt5::Gui>
+        $<TARGET_FILE:Qt5::Widgets>
+    DESTINATION
+        bin 
+    )
+
+install(
+    FILES 
+        $<$<PLATFORM_ID:Windows>:$<TARGET_FILE:Qt5::QWindowsIntegrationPlugin>>
+    DESTINATION
+        bin/platform
     )
 
 install(

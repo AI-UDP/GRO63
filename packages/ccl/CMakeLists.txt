@@ -10,7 +10,6 @@ project(ccl
 add_library(${PROJECT_NAME}
     App.cpp
     Clause.cpp
-    Debug.cpp
     Eval.cpp
     Expr.cpp
     Hill.cpp
