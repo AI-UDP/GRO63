@@ -71,7 +71,7 @@ target_compile_definitions(${PROJECT_NAME}
         $<$<NOT:$<BOOL:${GRO_GUI}>>:NOGUI>
     )
 
-# Copy files to build directory
+# Copy needed files to build directory
 configure_file(
     ${PROJECT_SOURCE_DIR}/include/gro.gro
     ${PROJECT_BINARY_DIR}/include/gro.gro
@@ -90,6 +90,16 @@ add_custom_command(
         $<TARGET_FILE:Qt5::Widgets>
         $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )
+
+if(WIN32)
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND mkdir plugins\\platforms
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:Qt5::QWindowsIntegrationPlugin>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms/
+    )
+endif()
 
 # Install files
 install(
@@ -114,7 +124,7 @@ install(
     FILES 
         $<$<PLATFORM_ID:Windows>:$<TARGET_FILE:Qt5::QWindowsIntegrationPlugin>>
     DESTINATION
-        bin/platform
+        bin/plugins/platforms
     )
 
 install(

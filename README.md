@@ -24,9 +24,9 @@ make
 
 ### Windows 
 You need MinGw compiler and Qt5 libraries.
-Both can be installed with the Qt offline pack, selecting all options.
+Both can be installed with the [Qt offline installers](https://www.qt.io/offline-installers) (selecting all options except *Strawberry* option).
 Once you have installed, add the MinGw compiler to the PATH.
-For example, if you have the Qt version 5.14.1, the path will be:
+For example, if you have the Qt version *5.14.1*, the path will be:
 ```
 C:\Qt\Qt5.14.1\Tools\mingw730_64\bin
 ```
@@ -35,10 +35,10 @@ Then we are able to compile `gro`:
 Clone the repository, place in it and execute:
 ```sh
 mkdir build && cd build
-cmake .. -G "MinGw Makefiles" -DCMAKE_PREFIX_PATH=<qt5-folder>
+cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH="<qt5-folder>"
 make
 ```
-Where `<qt5-folder>` should be something like `C:\Qt\Qt5.14.1\5.14.1` but can vary depending the qt version.
+Where `<qt5-folder>` should be something like `C:\Qt\Qt5.14.1\5.14.1\mingw_73_64` but can vary depending of the qt version.
 
 ## Installation
 If you want to install it, run the following command after the building process: `make install`
