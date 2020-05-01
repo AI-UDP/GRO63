@@ -18,7 +18,7 @@ Then, you are ready to compile it.
 Clone the repository, place in it, and execute:
 ```sh
 mkdir build && cd build
-cmake..
+cmake ..
 make
 ```
 
