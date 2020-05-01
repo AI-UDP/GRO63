@@ -100,6 +100,15 @@ add_custom_command(
         $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms/
     )
 endif()
+if(APPLE)
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND mkdir plugins\\platforms
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:Qt5::QCocoaIntegrationPlugin>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms/
+    )
+endif()
 
 # Install files
 install(
@@ -112,17 +121,18 @@ install(
     )
 
 install(
-    FILES 
+    FILES
         $<TARGET_FILE:Qt5::Core>
         $<TARGET_FILE:Qt5::Gui>
         $<TARGET_FILE:Qt5::Widgets>
     DESTINATION
-        bin 
+        bin
     )
 
 install(
-    FILES 
+    FILES
         $<$<PLATFORM_ID:Windows>:$<TARGET_FILE:Qt5::QWindowsIntegrationPlugin>>
+        $<$<PLATFORM_ID:Darwin>:$<TARGET_FILE:Qt5::QCocoaIntegrationPlugin>>
     DESTINATION
         bin/plugins/platforms
     )
